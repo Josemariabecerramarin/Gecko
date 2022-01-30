@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Esta clase crea una fichero CSV con los datos que obtenemos de la clase WebScrapping.
+ * Esta clase crea una fichero CSV con los datos que obtenemos de la clase WebScrapping
  */
 public class Writer {
     /**
