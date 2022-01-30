@@ -15,6 +15,9 @@ import java.util.List;
  */
 public class WebScrapping {
 
+    /**
+     * Aqui iniciaremos otros metodos
+     */
     public void Scrapping(){
         /**
          * @param js llamamos a la clase JavaScripts
@@ -45,10 +48,6 @@ public class WebScrapping {
         lista.click();
 
         js.scrollWindow(100, driver, wait);
-
-        List<WebElement> funkoElements = driver.findElements(new By.ByClassName("ajax_block_product"));
-        List<Funko> funkos = new ArrayList<>();
-
         /**
          * @param funkoElements esta lista buscara todos los datos dentro de la clase que le asignamos
          * @param funkoElement buscara uno a uno los elementos de las clases
@@ -57,6 +56,9 @@ public class WebScrapping {
          * @param precio va a buscar el contenido dentro de de la clase que le asignamos
          * @param descripcion va a buscar el contenido dentro de de la clase que le asignamos
          */
+        List<WebElement> funkoElements = driver.findElements(new By.ByClassName("ajax_block_product"));
+        List<Funko> funkos = new ArrayList<>();
+
         String titulo;
         String imagen;
         String precio;
