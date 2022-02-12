@@ -1,13 +1,14 @@
+package WebScrapping;
+
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 
-import javax.xml.crypto.Data;
 import java.io.File;
 import java.util.List;
 
 /**
- * Esta clase crea un fichero XML con los datos que sacamos de la clase WebScrapping
+ * Esta clase crea un fichero XML con los datos que sacamos de la clase WebScrapping.WebScrapping
  */
 public class JAXB {
     File file = new File("funkos.xml");

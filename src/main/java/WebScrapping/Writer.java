@@ -1,3 +1,5 @@
+package WebScrapping;
+
 import com.opencsv.CSVWriter;
 
 import java.io.File;
@@ -6,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Esta clase crea una fichero CSV con los datos que obtenemos de la clase WebScrapping
+ * Esta clase crea una fichero CSV con los datos que obtenemos de la clase WebScrapping.WebScrapping
  */
 public class Writer {
     /**

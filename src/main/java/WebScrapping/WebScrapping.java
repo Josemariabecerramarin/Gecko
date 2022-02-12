@@ -1,3 +1,5 @@
+package WebScrapping;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,10 +22,10 @@ public class WebScrapping {
      */
     public void Scrapping(){
         /**
-         * @param js llamamos a la clase JavaScripts
-         * @param w llamamos a la clase Writer
+         * @param js llamamos a la clase WebScrapping.JavaScripts
+         * @param w llamamos a la clase WebScrapping.Writer
          * @param file creamos el archivos y definimos la ruta del csv
-         * @param jaxb llamamos a la clase JAXB
+         * @param jaxb llamamos a la clase WebScrapping.JAXB
          */
         JavaScripts js = new JavaScripts();
         Writer w;

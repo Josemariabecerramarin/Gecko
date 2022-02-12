@@ -1,3 +1,5 @@
+package WebScrapping;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +13,7 @@ public class JavaScripts {
     /**
      * En este metodo creo un scroll para que la web muestre todos los datos
      * @param veces le decimos cuantas veces hará el scroll
-     * @param driver le mandamos la variable de la clase WebScrapping
+     * @param driver le mandamos la variable de la clase WebScrapping.WebScrapping
      * @param wait le mandamos la variable de la clase WebScapping
      */
     public void scrollWindow(int veces, WebDriver driver, WebDriverWait wait){

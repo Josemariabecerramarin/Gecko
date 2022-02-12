@@ -1,3 +1,5 @@
+package WebScrapping;
+
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
@@ -5,7 +7,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
  * Esta clase contiene unas variables ue utilizaremos para añadirlos al XML.
  */
 
-@XmlRootElement(name = "Funko")
+@XmlRootElement(name = "WebScrapping.Funko")
 public class Funko {
     String titulo;
     String imagen;

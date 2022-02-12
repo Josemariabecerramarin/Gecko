@@ -1,11 +1,11 @@
-# Projecto WebScrapping
+# Projecto WebScrapping.WebScrapping
 
-### Mi proyecto sirve para hacer WebScrapping de la web de bellascositas. Dentro de esta web buscaremos los funkos de marvel que tienen a la venta y guardaremos toda la informacion.
+### Mi proyecto sirve para hacer WebScrapping.WebScrapping de la web de bellascositas. Dentro de esta web buscaremos los funkos de marvel que tienen a la venta y guardaremos toda la informacion.
 - Titulo
 - Imagen
 - Precio
 - Descripcion
-### Esta informacion la guardamos en formato CSV y XML con las librerias de openCSV y JAXB.
+### Esta informacion la guardamos en formato CSV y XML con las librerias de openCSV y WebScrapping.JAXB.
 
 # Funcionamiento
 - Cuando ejecutamos la aplicacion se abrira la pagina web que le hemos indicado, en ella irá haciendo scroll para poder descubrir todos los articulos y así poder leerlos.
