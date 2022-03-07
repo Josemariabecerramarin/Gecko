@@ -16,7 +16,7 @@ public class Main {
         Connection c = connectionFactory.connect();
 
         FunkoController funkoController = new FunkoController(c);
-        RolController rolController = new RolController(c);
+        DescripcionController descripcionController = new DescripcionController(c);
         TodoController todoController = new TodoController(c);
 
 
@@ -25,11 +25,11 @@ public class Main {
             switch (option) {
                 case 1:
                     funkoController.borrarTablaFunko();
-                    rolController.borrarTabla();
+                    descripcionController.borrarTabla();
                     break;
 
                 case 2:
-                    rolController.crearTabla();
+                    descripcionController.crearTabla();
                     funkoController.crearTabla();
                     break;
 
@@ -57,7 +57,7 @@ public class Main {
                     break;
 
                 case 9:
-                    rolController.modificarRol();
+                    descripcionController.modificarDescripcion();
                     break;
 
                 case 10:
@@ -69,7 +69,7 @@ public class Main {
                     break;
 
                 case 12:
-                    rolController.createRol();
+                    descripcionController.createTitulo();
                     break;
 
                 case 13:
@@ -78,7 +78,7 @@ public class Main {
 
 
                 case 14:
-                    rolController.showRols();
+                    descripcionController.showDescripcion();
                     break;
 
                 case 15:

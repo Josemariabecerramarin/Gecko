@@ -34,16 +34,16 @@ public class Menu {
             System.out.println("2. Craer Tablas");
             System.out.println("3. Rellenar Tablas");
             System.out.println("4. Mostrar los que sean ?");
-            System.out.println("5. Mostrar los campeones que tengan un ?");
-            System.out.println("6. Mostrar todos los campeon que empiezan por ?");
-            System.out.println("7. Modificar el nombre de un campeon");
-            System.out.println("8. Modificar el rols de los campeones que empiezan por ?");
-            System.out.println("9. Eliminar un campeon");
-            System.out.println("10. Eliminar campeones con el rol ?");
-            System.out.println("11. Añadir un rol");
-            System.out.println("12. Añadir un campeon");
-            System.out.println("13. Mostrar campeones");
-            System.out.println("14. Mostrar roles");
+            System.out.println("5. Mostrar los funkos que tengan un ?");
+            System.out.println("6. Mostrar todos los funkos que empiezan por ?");
+            System.out.println("7. Modificar el nombre de un funko");
+            System.out.println("8. Modificar la descripcion de los funkos que empiezan por ?");
+            System.out.println("9. Eliminar un funko");
+            System.out.println("10. Eliminar eliminar los funko con la descripcion ?");
+            System.out.println("11. Añadir una descripcion");
+            System.out.println("12. Añadir un funko");
+            System.out.println("13. Mostrar funkos");
+            System.out.println("14. Mostrar descripciones");
             System.out.println("15. Exit");
             System.out.println("Esculli opció: ");
             try {
@@ -62,17 +62,17 @@ public class Menu {
     }
 
     /**
-     * Este metodo sirve para mostrar un menu de rol
+     * Este metodo sirve para mostrar un menu de descripcion
      * @param c recibe la coneccion
      * @return devuelve el rol que elegiste
      */
-    public String RolMenu(Connection c){
-        RolController rolController = new RolController(c);
+    public String DescripcionMenu(Connection c){
+        DescripcionController descripcionController = new DescripcionController(c);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         for(;;){
-            rolController.showRols();
-            System.out.println("Elige el rol: ");
+            descripcionController.showDescripcion();
+            System.out.println("Elige la descripcion: ");
             try {
                 opciones = br.readLine();
             } catch (NumberFormatException | IOException e) {
@@ -84,17 +84,17 @@ public class Menu {
     }
 
     /**
-     * Este metodo sirve para mostrar un menu de nombres de campeon
-     * @param c recibe la coneccion
+     * Este metodo sirve para mostrar un menu de nombres de los funkos
+     * @param c recibe la conexion
      * @return devuelve el nombre que elegiste
      */
     public String NomMenu(Connection c){
         FunkoController funkoController = new FunkoController(c);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println("\n" + "Campeones: ");
+        System.out.println("\n" + "Funkos: ");
         for(;;){
-            funkoController.showCampeonNom();
+            funkoController.showFunkoNombre();
             try {
                 opciones = br.readLine();
             } catch (NumberFormatException | IOException e) {
@@ -113,7 +113,7 @@ public class Menu {
      */
     public Identity authenticate(int tries) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("============================ACB=============================");
+        System.out.println("===========================Funko============================");
         System.out.println("============================================================");
         System.out.println("Avís: tens " + (3 - tries) + " intents per loginarte");
         System.out.println("============================================================");

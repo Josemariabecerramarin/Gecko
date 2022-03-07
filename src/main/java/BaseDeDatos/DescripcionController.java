@@ -1,14 +1,13 @@
 package BaseDeDatos;
 
-import java.io.*;
 import java.sql.*;
 import java.util.Locale;
 import java.util.Scanner;
 
 /**
- * Esta clase sirve para controlar la tabla rol situada en mi base de datos
+ * Esta clase sirve para controlar la tabla descripcion situada en mi base de datos
  */
-public class RolController {
+public class DescripcionController {
     private Connection connection;
     Scanner sc;
     Menu menu = new Menu();
@@ -17,28 +16,28 @@ public class RolController {
      * Esto es el constructor de la clase
      * @param connection recibe la coneccion hacia postgres
      */
-    public RolController(Connection connection) {
+    public DescripcionController(Connection connection) {
         this.connection = connection;
         this.sc = new Scanner(System.in);
     }
 
     /**
-     * Este metodo sirve para crear un rol
+     * Este metodo sirve para crear una descripcion
      */
-    public void createRol() {
+    public void createTitulo() {
         try {
             System.out.println("----------------------");
-            System.out.println("Crear Rol");
+            System.out.println("Crear descripcion");
             System.out.println("----------------------");
 
-            System.out.println("Rol:");
-            String rol = sc.nextLine().toUpperCase(Locale.ROOT);
+            System.out.println("Descripcion: ");
+            String descripcion = sc.nextLine().toUpperCase(Locale.ROOT);
 
-            String sql = "INSERT INTO rol " +
-                    "(rol) VALUES (?)";
+            String sql = "INSERT INTO descripcion " +
+                    "(descripcion) VALUES (?)";
 
             PreparedStatement pst = connection.prepareStatement(sql);
-            pst.setString(1, rol);
+            pst.setString(1, descripcion);
 
             pst.executeUpdate();
 
@@ -50,70 +49,70 @@ public class RolController {
     }
 
     /**
-     * Este metodo sirve para mostrar roles
+     * Este metodo sirve para mostrar las descripciones de los funkos
      */
-    public void showRols(){
-        System.out.println("\n" + "Roles: ");
+    public void showDescripcion(){
+        System.out.println("\n" + "Titulo: ");
 
         ResultSet rs = null;
-        String sql = "SELECT * FROM rol";
+        String sql = "SELECT * FROM descripcion";
         try{
             Statement st = connection.createStatement();
 
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                System.out.println("- " + rs.getString("rol"));
+                System.out.println("- " + rs.getString("titulo"));
             }
 
             rs.close();
             st.close();
 
         }catch (SQLException e){
-            System.out.println("Error: tabla rol no existe");
+            System.out.println("Error: tabla titulo no existe");
         }
     }
 
     /**
-     * Este metodo sirve para borrar la tabla de rol
+     * Este metodo sirve para borrar la tabla de descripcion
      */
     public void borrarTabla() {
         try {
             Statement st = connection.createStatement();
-            st.executeUpdate("DROP table rol");
+            st.executeUpdate("DROP table descripcion");
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Error: tabla rol no existe");
+            System.out.println("Error: tabla descripcion no existe");
         }
     }
 
     /**
-     * Este metodo sirve para crear la tabla de rol
+     * Este metodo sirve para crear la tabla de titulo
      */
     public void crearTabla(){
         try {
             Statement st = connection.createStatement();
-            st.executeUpdate("CREATE TABLE rol(rol varchar(20) primary key)");
+            st.executeUpdate("CREATE TABLE funko(titulo varchar(20) primary key)");
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Error: tabla rol ya existe");
+            System.out.println("Error: tabla descripcion ya existe");
 
         }
     }
 
     /**
-     * Este metodo sirve para modificar el rol de los campeones que comienzan por tal letra
+     * Este metodo sirve para modificar la descripcion de los funkos que comienzan por tal letra
      */
-    public void modificarRol(){
+    public void modificarDescripcion(){
         try {
             Statement st = connection.createStatement();
-            String rol = menu.RolMenu(connection).toUpperCase(Locale.ROOT);
+            String descripcion = menu.DescripcionMenu(connection).toUpperCase(Locale.ROOT);
             System.out.println("Escribe la primera letra del campeon que quieras modificar ?");
-            String nom = sc.nextLine().toUpperCase(Locale.ROOT);
+            String nombre = sc.nextLine().toUpperCase(Locale.ROOT);
 
-            st.executeUpdate("update campeon set rol='" + rol + "' where nom like '" + nom + "%'");
+            st.executeUpdate("update funko set descripcion='" + descripcion + "' where nombre like '" + nombre + "%'");
             st.close();
 
         } catch (SQLException e) {

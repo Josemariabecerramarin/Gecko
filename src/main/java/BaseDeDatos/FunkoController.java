@@ -34,13 +34,13 @@ public class FunkoController {
             String nombre = sc.nextLine().toUpperCase(Locale.ROOT);
 
             System.out.println("Inserta una imagen:");
-            String imagen = menu.RolMenu(connection).toUpperCase(Locale.ROOT);
+            String imagen = menu.DescripcionMenu(connection).toUpperCase(Locale.ROOT);
 
             System.out.println("Inserta el precio:");
-            String precio = menu.RolMenu(connection).toUpperCase(Locale.ROOT);
+            String precio = menu.DescripcionMenu(connection).toUpperCase(Locale.ROOT);
 
             System.out.println("Inserta una descripcion:");
-            String descripcion = menu.RolMenu(connection).toUpperCase(Locale.ROOT);
+            String descripcion = menu.DescripcionMenu(connection).toUpperCase(Locale.ROOT);
 
             ;
 
@@ -96,7 +96,7 @@ public class FunkoController {
      */
     public void showFunkoPorPrecio(){
         ResultSet rs = null;
-        String precio = menu.RolMenu(connection).toUpperCase(Locale.ROOT);
+        String precio = menu.DescripcionMenu(connection).toUpperCase(Locale.ROOT);
         String sql = "SELECT * FROM funko where precio='" + precio + "'";
 
         try{
@@ -179,7 +179,7 @@ public class FunkoController {
      */
     public void showFunkoNombre(){
         ResultSet rs = null;
-        String sql = "SELECT nom FROM funko";
+        String sql = "SELECT nombre FROM funko";
         try{
             Statement st = connection.createStatement();
 
@@ -200,7 +200,7 @@ public class FunkoController {
 
 
     /**
-     * Este metodo sirve para modificar el nombre de un campeon
+     * Este metodo sirve para modificar el nombre de un funko
      */
     public void modificarFunko(){
         try {
@@ -209,7 +209,7 @@ public class FunkoController {
             System.out.println("Escribe el nuevo nombre: ");
             String newNom = sc.nextLine().toUpperCase(Locale.ROOT);
 
-            st.executeUpdate("update campeon set nombre='" + newNom + "' where nombre='" + nombre + "'");
+            st.executeUpdate("update funko set nombre='" + newNom + "' where nombre='" + nombre + "'");
             st.close();
 
         } catch (SQLException e) {
@@ -240,7 +240,8 @@ public class FunkoController {
         try {
             Statement st = connection.createStatement();
             System.out.println("Que precio quieres eliminar: ");
-            String precio = menu.RolMenu(connection).toUpperCase(Locale.ROOT);
+            String precio = menu.DescripcionMenu(
+                    connection).toUpperCase(Locale.ROOT);
             st.executeUpdate("delete from funko where precio='" + precio + "'");
             st.close();
 

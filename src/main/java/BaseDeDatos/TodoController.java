@@ -34,20 +34,20 @@ public class TodoController {
         int cont = 0;
         String[] rata;
         try {
-            BufferedReader br = new BufferedReader(new FileReader(new File("lol.csv")));
+            BufferedReader br = new BufferedReader(new FileReader(new File("listafunkos.csv")));
             String linia;
             while ((linia = br.readLine()) != null) {
                 if (cont > 0) {
                     rata = linia.split("\"");
 
                     try {
-                        String rol = rata[3];
+                        String descripcion = rata[1];
 
-                        String sql = "INSERT INTO rol " +
-                                "(rol) VALUES (?)";
+                        String sql = "INSERT INTO descripcion " +
+                                "(descripcion) VALUES (?)";
 
                         PreparedStatement pst = connection.prepareStatement(sql);
-                        pst.setString(1, rol);
+                        pst.setString(1, descripcion);
 
                         pst.executeUpdate();
 
@@ -57,17 +57,19 @@ public class TodoController {
                     }
 
                     try {
-                        String nom = rata[1];
-                        String rol = rata[3];
-                        String historia = rata[5];
+                        String nombre = rata[1];
+                        String imagen = rata[3];
+                        String precio = rata[5];
+                        String descripcion = rata[7];
 
-                        String sql = "INSERT INTO campeon " +
-                                "(nom,rol,historia) VALUES (?,?,?)";
+                        String sql = "INSERT INTO funko " +
+                                "(nombre, imagen, precio, descripcion) VALUES (?,?,?)";
 
                         PreparedStatement pst = connection.prepareStatement(sql);
-                        pst.setString(1, nom);
-                        pst.setString(2, rol);
-                        pst.setString(3, historia);
+                        pst.setString(1, nombre);
+                        pst.setString(2, imagen);
+                        pst.setString(3, precio);
+                        pst.setString(3, descripcion);
 
                         pst.executeUpdate();
 

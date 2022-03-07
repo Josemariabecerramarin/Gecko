@@ -91,7 +91,7 @@ public class ConnectionFactory {
 
     /**
      * Esto es para conectar
-     * @return devuelve la coneccion
+     * @return devuelve la conexion
      */
     public Connection connect() {
         if (connection == null) {
@@ -125,7 +125,7 @@ public class ConnectionFactory {
     }
 
     /**
-     * Esto para desconectar la coneccion
+     * Esto para desconectar la conexion
      */
     public void disconnect() {
         if (connection != null) {
