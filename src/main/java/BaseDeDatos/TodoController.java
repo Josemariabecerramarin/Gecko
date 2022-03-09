@@ -1,7 +1,6 @@
 package BaseDeDatos;
 
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -20,6 +19,7 @@ public class TodoController {
 
     /**
      * Esto es el constructor de la clase
+     *
      * @param connection recibe la coneccion hacia postgres
      */
     public TodoController(java.sql.Connection connection) {
@@ -31,55 +31,67 @@ public class TodoController {
      * Este metodo sirve para rellenar datos de un fichero hacia las tablas de base de datos
      */
     public void rellenar() {
-        int cont = 0;
+
         String[] rata;
         try {
-            BufferedReader br = new BufferedReader(new FileReader(new File("listafunkos.csv")));
+            BufferedReader br = new BufferedReader(new FileReader(new File("src/main/resources/listafunkos.csv")));
             String linia;
             while ((linia = br.readLine()) != null) {
-                if (cont > 0) {
-                    rata = linia.split("\"");
+                rata = linia.split("\"");
 
-                    try {
-                        String descripcion = rata[1];
+                System.out.println(linia);
 
-                        String sql = "INSERT INTO descripcion " +
-                                "(descripcion) VALUES (?)";
+                try {
+                    String descripcion = rata[1];
 
-                        PreparedStatement pst = connection.prepareStatement(sql);
-                        pst.setString(1, descripcion);
+                    String sql = "INSERT INTO categoria " +
+                            "(nombre) VALUES (?)";
 
-                        pst.executeUpdate();
+                    System.out.println(descripcion);
 
-                        pst.close();
 
-                    } catch (SQLException e) {
-                    }
+                    PreparedStatement pst = connection.prepareStatement(sql);
+                    pst.setString(1, descripcion);
 
-                    try {
-                        String nombre = rata[1];
-                        String imagen = rata[3];
-                        String precio = rata[5];
-                        String descripcion = rata[7];
+                    pst.executeUpdate();
 
-                        String sql = "INSERT INTO funko " +
-                                "(nombre, imagen, precio, descripcion) VALUES (?,?,?)";
+                    pst.close();
 
-                        PreparedStatement pst = connection.prepareStatement(sql);
-                        pst.setString(1, nombre);
-                        pst.setString(2, imagen);
-                        pst.setString(3, precio);
-                        pst.setString(3, descripcion);
-
-                        pst.executeUpdate();
-
-                        pst.close();
-
-                    } catch (SQLException e) {
-                    }
-                } else {
-                    cont++;
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
+
+                try {
+                    String categoria = rata[1];
+                    String nombre = rata[3];
+                    String imagen = rata[5];
+                    String precio = rata[7];
+                    String descripcion = rata[9];
+
+                    String sql = "INSERT INTO funko " +
+                            "(categoria, nombre, imagen, precio, descripcion) VALUES (?,?,?,?,?)";
+
+                    System.out.println(nombre);
+                    System.out.println(imagen);
+                    System.out.println(precio);
+                    System.out.println(descripcion);
+
+                    PreparedStatement pst = connection.prepareStatement(sql);
+                    pst.setString(1, categoria);
+                    pst.setString(2, nombre);
+                    pst.setString(3, imagen);
+                    pst.setString(4, precio);
+                    pst.setString(5, descripcion);
+
+
+                    pst.executeUpdate();
+
+                    pst.close();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
             }
         } catch (Exception e) {
             e.getStackTrace();

@@ -30,6 +30,9 @@ public class FunkoController {
             System.out.println("Crear Funko");
             System.out.println("----------------------");
 
+            System.out.println("Categoria: ");
+            String categoria = sc.nextLine().toUpperCase(Locale.ROOT);
+
             System.out.println("Nombre:");
             String nombre = sc.nextLine().toUpperCase(Locale.ROOT);
 
@@ -45,13 +48,14 @@ public class FunkoController {
             ;
 
             String sql = "INSERT INTO funko " +
-                    "(nom, rol, historia, descripcion) VALUES (?,?,?,?)";
+                    "(categoria, nombre, imagen, precio, descripcion) VALUES (?,?,?,?,?)";
 
             PreparedStatement pst = connection.prepareStatement(sql);
-            pst.setString(1, nombre);
-            pst.setString(2, imagen);
-            pst.setString(3, precio);
-            pst.setString(4, descripcion);
+            pst.setString(1, categoria);
+            pst.setString(2, nombre);
+            pst.setString(3, imagen);
+            pst.setString(4, precio);
+            pst.setString(5, descripcion);
 
             pst.executeUpdate();
 
@@ -83,7 +87,7 @@ public class FunkoController {
     public void crearTabla(){
         try {
             Statement st = connection.createStatement();
-            st.executeUpdate("CREATE TABLE funko(id smallint primary key GENERATED ALWAYS AS IDENTITY, nombre varchar(20), imagen text,  precio varchar(20), descripcion varchar(50))");
+            st.executeUpdate("CREATE TABLE funko(id smallint primary key GENERATED ALWAYS AS IDENTITY, categoria varchar(200), nombre varchar(256), imagen varchar(256),  precio varchar(256), descripcion varchar(256))");
             st.close();
 
         } catch (SQLException e) {
@@ -105,6 +109,7 @@ public class FunkoController {
 
             while (rs.next()) {
                 System.out.println("\n" + "Nombre: " + rs.getString("nombre") + "\n" +
+                        "Categoria: " + rs.getString("categoria")+ "\n" +
                         "Imagen: " + rs.getString("imagen")+ "\n" +
                         "Precio: " + rs.getString("precio")+ "\n" +
                         "Descripcion: " + rs.getString("descripcion") +
@@ -134,6 +139,7 @@ public class FunkoController {
 
             while (rs.next()) {
                 System.out.println("\n" + "Nombre: " + rs.getString("nombre") + "\n" +
+                        "Categoria: " + rs.getString("categoria") + "\n" +
                         "id: " + rs.getInt("id"));
             }
 
@@ -160,6 +166,7 @@ public class FunkoController {
 
             while (rs.next()) {
                 System.out.println("\n" + "Nom: " + rs.getString("nom") + "\n" +
+                        "Categoria: "+ rs.getString("categoria") + "\n" +
                         "Imagen: " + rs.getString("imagen") + "\n" +
                         "Precio: " + rs.getString("precio")+ "\n" +
                         "Descripcion: " + rs.getString("descripcion"));
@@ -186,7 +193,8 @@ public class FunkoController {
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                System.out.println("- " + rs.getString("nombre"));
+                System.out.println("- " + rs.getString("nombre")+
+                        "Categoria: "+ rs.getString("categoria"));
             }
 
 

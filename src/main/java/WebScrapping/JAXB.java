@@ -11,7 +11,7 @@ import java.util.List;
  * Esta clase crea un fichero XML con los datos que sacamos de la clase WebScrapping.WebScrapping
  */
 public class JAXB {
-    File file = new File("funkos.xml");
+    File file = new File("src/main/resources/funkos.xml");
     Funkos funkosList = new Funkos();
     Funko funko;
     JAXBContext jaxbContext;
@@ -27,7 +27,7 @@ public class JAXB {
             jaxbContext = JAXBContext.newInstance(Funkos.class);
 
             for (Funko f : funkos) {
-                funko = new Funko(f.titulo, f.imagen, f.precio, f.descripcion);
+                funko = new Funko(f.categoria, f.titulo, f.imagen, f.precio, f.descripcion);
                 funkosList.addFunkos(funko);
             }
 

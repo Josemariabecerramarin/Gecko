@@ -9,10 +9,12 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "WebScrapping.Funko")
 public class Funko {
+    String categoria;
     String titulo;
     String imagen;
     String precio;
     String descripcion;
+
 
     /**
      * Este constructor que recibira unos datos y los asignara
@@ -21,7 +23,8 @@ public class Funko {
      * @param precio recibe un valor para precio
      * @param descripcion recibe un valor para descripcion
      */
-    Funko(String titulo, String imagen, String precio, String descripcion) {
+    Funko(String categoria, String titulo, String imagen, String precio, String descripcion) {
+        this.categoria = categoria;
         this.titulo = titulo;
         this.imagen = imagen;
         this.precio = precio;
@@ -32,6 +35,14 @@ public class Funko {
      * Este es un constructor ue esta vacio
      */
     Funko(){}
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
 
     /**
      * Aqui cogemos el titulo

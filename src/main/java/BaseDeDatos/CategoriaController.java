@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Esta clase sirve para controlar la tabla descripcion situada en mi base de datos
  */
-public class DescripcionController {
+public class CategoriaController {
     private Connection connection;
     Scanner sc;
     Menu menu = new Menu();
@@ -16,7 +16,7 @@ public class DescripcionController {
      * Esto es el constructor de la clase
      * @param connection recibe la coneccion hacia postgres
      */
-    public DescripcionController(Connection connection) {
+    public CategoriaController(Connection connection) {
         this.connection = connection;
         this.sc = new Scanner(System.in);
     }
@@ -33,8 +33,8 @@ public class DescripcionController {
             System.out.println("Descripcion: ");
             String descripcion = sc.nextLine().toUpperCase(Locale.ROOT);
 
-            String sql = "INSERT INTO descripcion " +
-                    "(descripcion) VALUES (?)";
+            String sql = "INSERT INTO categoria " +
+                    "(categoria) VALUES (?)";
 
             PreparedStatement pst = connection.prepareStatement(sql);
             pst.setString(1, descripcion);
@@ -51,11 +51,10 @@ public class DescripcionController {
     /**
      * Este metodo sirve para mostrar las descripciones de los funkos
      */
-    public void showDescripcion(){
+    public void showCategoria(){
         System.out.println("\n" + "Titulo: ");
-
         ResultSet rs = null;
-        String sql = "SELECT * FROM descripcion";
+        String sql = "SELECT * FROM categoria";
         try{
             Statement st = connection.createStatement();
 
@@ -79,7 +78,7 @@ public class DescripcionController {
     public void borrarTabla() {
         try {
             Statement st = connection.createStatement();
-            st.executeUpdate("DROP table descripcion");
+            st.executeUpdate("DROP table categoria");
             st.close();
 
         } catch (SQLException e) {
@@ -93,7 +92,7 @@ public class DescripcionController {
     public void crearTabla(){
         try {
             Statement st = connection.createStatement();
-            st.executeUpdate("CREATE TABLE funko(titulo varchar(20) primary key)");
+            st.executeUpdate("CREATE TABLE categoria(id smallint primary key GENERATED ALWAYS AS IDENTITY, nombre varchar(256))");
             st.close();
 
         } catch (SQLException e) {

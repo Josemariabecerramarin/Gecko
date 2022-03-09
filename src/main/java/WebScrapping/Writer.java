@@ -18,13 +18,14 @@ public class Writer {
      */
     Writer(List<Funko> listaFunkos, File file){
         CSVWriter csvWriter;
-        String[] entries =  new String[4];
+        String[] entries =  new String[5];
         file.delete();
         for (Funko funko: listaFunkos) {
-            entries[0]=(funko.titulo);
-            entries[1]=(funko.imagen);
-            entries[2]=(funko.precio);
-            entries[3]=(funko.descripcion);
+            entries[0]=(funko.categoria);
+            entries[1]=(funko.titulo);
+            entries[2]=(funko.imagen);
+            entries[3]=(funko.precio);
+            entries[4]=(funko.descripcion);
 
             try {
                 csvWriter = new CSVWriter(new FileWriter(file, true));

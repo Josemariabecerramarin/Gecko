@@ -67,11 +67,11 @@ public class Menu {
      * @return devuelve el rol que elegiste
      */
     public String DescripcionMenu(Connection c){
-        DescripcionController descripcionController = new DescripcionController(c);
+        CategoriaController categoriaController = new CategoriaController(c);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         for(;;){
-            descripcionController.showDescripcion();
+            categoriaController.showCategoria();
             System.out.println("Elige la descripcion: ");
             try {
                 opciones = br.readLine();
