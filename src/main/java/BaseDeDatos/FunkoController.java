@@ -87,7 +87,8 @@ public class FunkoController {
     public void crearTabla(){
         try {
             Statement st = connection.createStatement();
-            st.executeUpdate("CREATE TABLE funko(id smallint primary key GENERATED ALWAYS AS IDENTITY, categoria varchar(200), nombre varchar(256), imagen varchar(256),  precio varchar(256), descripcion varchar(256))");
+            st.executeUpdate("CREATE TABLE IF NOT EXISTS categoria(is_categoria smallint  primary key, categoria varchar(50))");
+            st.executeUpdate("CREATE TABLE IF NOT EXISTS funko(id_categoria smallint references categoria(id_categoria), nombre varchar(256), imagen varchar(256),  precio varchar(256), descripcion varchar(256))");
             st.close();
 
         } catch (SQLException e) {
