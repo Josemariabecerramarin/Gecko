@@ -4,10 +4,7 @@ package BaseDeDatos;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Scanner;
 
 /**
@@ -20,7 +17,7 @@ public class TodoController {
     /**
      * Esto es el constructor de la clase
      *
-     * @param connection recibe la coneccion hacia postgres
+     * @param connection recibe la conexión hacia postgres
      */
     public TodoController(java.sql.Connection connection) {
         this.connection = connection;
@@ -28,7 +25,7 @@ public class TodoController {
     }
 
     /**
-     * Este metodo sirve para rellenar datos de un fichero hacia las tablas de base de datos
+     * Este metodo sirve para rellenar las tablas de la base de datos desde un fichero
      */
     public void rellenar() {
 
@@ -40,44 +37,78 @@ public class TodoController {
                 rata = linia.split("\"");
 
                 System.out.println(linia);
+                int id_categoria = 0;
 
                 try {
-                    String descripcion = rata[1];
 
-                    String sql = "INSERT INTO categoria " +
-                            "(nombre) VALUES (?)";
+                    String categoria = rata[1];
 
-                    System.out.println(descripcion);
+                    switch (categoria) {
+                        case "MARVEL":
+                            id_categoria = 1;
+                            break;
+                        case "DC COMICS":
+                            id_categoria = 2;
+                            break;
+                        case "ANIME / MANGA":
+                            id_categoria = 3;
+                            break;
+                    }
 
-
+                    String sql = "SELECT COUNT(id_categoria) as size FROM categoria WHERE id_categoria = ?";
                     PreparedStatement pst = connection.prepareStatement(sql);
-                    pst.setString(1, descripcion);
+                    pst.setInt(1, id_categoria);
 
-                    pst.executeUpdate();
 
-                    pst.close();
+                    ResultSet rs = pst.executeQuery();
+
+                    while (rs.next()) {
+                        int rsSize = rs.getInt("size");
+
+                        // La categoría aún no está insertada
+                        if ((rsSize == 0)) {
+
+                            sql = "INSERT INTO categoria " + "(id_categoria,categoria) VALUES (?,?)";
+
+
+                            pst = connection.prepareStatement(sql);
+                            pst.setInt(1, id_categoria);
+                            pst.setString(2, categoria);
+
+                            pst.executeUpdate();
+
+                            pst.close();
+
+
+                        }
+                    }
 
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
 
+                System.out.println(rata[1]);
+
+
                 try {
-                    String categoria = rata[1];
+                    // El id_categoria ya lo tengo
                     String nombre = rata[3];
                     String imagen = rata[5];
                     String precio = rata[7];
                     String descripcion = rata[9];
 
-                    String sql = "INSERT INTO funko " +
-                            "(categoria, nombre, imagen, precio, descripcion) VALUES (?,?,?,?,?)";
 
                     System.out.println(nombre);
                     System.out.println(imagen);
                     System.out.println(precio);
                     System.out.println(descripcion);
 
+
+                    String sql = "INSERT INTO funko " + "(id_categoria, nombre, imagen, precio, descripcion) VALUES (?,?,?,?,?)";
+
+
                     PreparedStatement pst = connection.prepareStatement(sql);
-                    pst.setString(1, categoria);
+                    pst.setInt(1, id_categoria);
                     pst.setString(2, nombre);
                     pst.setString(3, imagen);
                     pst.setString(4, precio);

@@ -5,7 +5,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 /**
- * Esta clase sirve para controlar la tabla descripcion situada en mi base de datos
+ * Esta clase sirve para controlar la tabla categoria situada en mi base de datos
  */
 public class CategoriaController {
     private Connection connection;
@@ -14,7 +14,7 @@ public class CategoriaController {
 
     /**
      * Esto es el constructor de la clase
-     * @param connection recibe la coneccion hacia postgres
+     * @param connection recibe la conexion hacia postgres
      */
     public CategoriaController(Connection connection) {
         this.connection = connection;
@@ -24,32 +24,10 @@ public class CategoriaController {
     /**
      * Este metodo sirve para crear una descripcion
      */
-    public void createTitulo() {
-        try {
-            System.out.println("----------------------");
-            System.out.println("Crear descripcion");
-            System.out.println("----------------------");
 
-            System.out.println("Descripcion: ");
-            String descripcion = sc.nextLine().toUpperCase(Locale.ROOT);
-
-            String sql = "INSERT INTO categoria " +
-                    "(categoria) VALUES (?)";
-
-            PreparedStatement pst = connection.prepareStatement(sql);
-            pst.setString(1, descripcion);
-
-            pst.executeUpdate();
-
-            pst.close();
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
 
     /**
-     * Este metodo sirve para mostrar las descripciones de los funkos
+     * Este metodo sirve para mostrar la categoria de los funkos
      */
     public void showCategoria(){
         System.out.println("\n" + "Titulo: ");
@@ -73,7 +51,7 @@ public class CategoriaController {
     }
 
     /**
-     * Este metodo sirve para borrar la tabla de descripcion
+     * Este metodo sirve para borrar la tabla categoria
      */
     public void borrarTabla() {
         try {
@@ -82,40 +60,7 @@ public class CategoriaController {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Error: tabla descripcion no existe");
-        }
-    }
-
-    /**
-     * Este metodo sirve para crear la tabla de titulo
-     */
-    public void crearTabla(){
-        try {
-            Statement st = connection.createStatement();
-            st.executeUpdate("CREATE TABLE categoria(id smallint primary key GENERATED ALWAYS AS IDENTITY, nombre varchar(256))");
-            st.close();
-
-        } catch (SQLException e) {
-            System.out.println("Error: tabla descripcion ya existe");
-
-        }
-    }
-
-    /**
-     * Este metodo sirve para modificar la descripcion de los funkos que comienzan por tal letra
-     */
-    public void modificarDescripcion(){
-        try {
-            Statement st = connection.createStatement();
-            String descripcion = menu.DescripcionMenu(connection).toUpperCase(Locale.ROOT);
-            System.out.println("Escribe la primera letra del campeon que quieras modificar ?");
-            String nombre = sc.nextLine().toUpperCase(Locale.ROOT);
-
-            st.executeUpdate("update funko set descripcion='" + descripcion + "' where nombre like '" + nombre + "%'");
-            st.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error: tabla categoria no existe");
         }
     }
 }

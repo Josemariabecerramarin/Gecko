@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 /**
- * Esta clase es la principal donde inicializas tu programa y muestra un menu
+ * Esta clase es la principal donde inicializas tu programa y muestra el menu
  */
 public class Main {
     public static void main(String[] args) throws IOException, SQLException, ParseException {
@@ -36,51 +36,29 @@ public class Main {
                     todoController.rellenar();
                     break;
                 case 4:
+                    funkoController.createFunko();
+                    break;
+                case 5:
                     funkoController.showFunkoNombre();
                     break;
 
-                case 5:
+                case 6:
                     funkoController.showFunkoPorPrecio();
                     break;
 
-                case 6:
-                    funkoController.showFunkoCon();
-                    break;
-
                 case 7:
-                    funkoController.showFunkoPorId();
+                    funkoController.borrarFunkoPorCategoria();
                     break;
 
                 case 8:
-                    funkoController.modificarFunko();
+                    funkoController.showFunkoPorId();
                     break;
 
                 case 9:
-                    categoriaController.modificarDescripcion();
+                    funkoController.mostrarFunkoPorNombre();
                     break;
-
                 case 10:
-                    funkoController.borrarFunko();
-                    break;
-
-                case 11:
-                    funkoController.borrarFunkoPorPrecio();
-                    break;
-
-                case 12:
-                    categoriaController.createTitulo();
-                    break;
-
-                case 13:
-                    funkoController.createFunko();
-                    break;
-
-
-                case 14:
-                    categoriaController.showCategoria();
-                    break;
-
-                case 15:
+                    connectionFactory.disconnect();
                     System.exit(0);
                     break;
 

@@ -1,7 +1,7 @@
 package BaseDeDatos;
 
 /**
- * Esta clase sirve para identificar el usuario
+ * Esta clase sirve para identificar al usuario
  */
 public class Identity {
     private String user;
@@ -20,7 +20,7 @@ public class Identity {
     }
 
     /**
-     * Este metodo sirve para pillar el nombre
+     * Este metodo sirve para coger el nombre
      * @return devuelve el nombre
      */
     public String getUser() {
@@ -36,7 +36,7 @@ public class Identity {
     }
 
     /**
-     * Este metodo sirve para pillar la contraseña
+     * Este metodo sirve para coger la contraseña
      * @return devuelve la contraseña
      */
     public String getPassword() {
