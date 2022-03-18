@@ -1,4 +1,4 @@
-package BaseDeDatos;
+package JDBC;
 
 import java.io.IOException;
 import java.io.InputStream;

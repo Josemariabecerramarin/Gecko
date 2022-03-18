@@ -1,4 +1,4 @@
-package BaseDeDatos;
+package JDBC;
 
 /**
  * Esta clase sirve para identificar al usuario

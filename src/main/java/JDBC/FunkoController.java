@@ -1,4 +1,4 @@
-package BaseDeDatos;
+package JDBC;
 
 import java.sql.*;
 import java.util.Locale;
