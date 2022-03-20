@@ -11,7 +11,7 @@ import java.util.Properties;
  * Esta clase sirve para hacer las conexiones entre IntelliJ y la base de datos
  */
 public class ConnectionFactory {
-    // init database constants
+    // init Hibernate.database constants
     private static final String DATABASE_DRIVER = "org.postgresql.Driver";
     //private static final String DATABASE_URL = "jdbc:postgresql://10.99.108.60:5432/acb";
     //private static final String USERNAME = "usuario";
@@ -51,7 +51,7 @@ public class ConnectionFactory {
     }
 
     /**
-     * Initializes the class loading the database properties file and assigns values
+     * Initializes the class loading the Hibernate.database properties file and assigns values
      * to the instance variables.
      *
      * @throws RuntimeException Properties file could not be found.
